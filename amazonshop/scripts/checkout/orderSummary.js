@@ -4,6 +4,7 @@ import {formatCurrency} from '../utils/money.js'
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js'
 import { renderPaymentSummary } from './paymentSummary.js';
+import { renderCheckoutHeader } from './checkoutHeader.js';
 
 
 /*const today = dayjs();
@@ -145,6 +146,7 @@ export function renderOrderSummary(){
       //console.log(container);
       container.remove();
       renderPaymentSummary();
+      renderCheckoutHeader();
     });
   });
 
@@ -170,6 +172,7 @@ export function renderOrderSummary(){
         updateProductQuantity(productId, updatedQuantity);
         renderOrderSummary();
         renderPaymentSummary();
+        renderCheckoutHeader();
       }else{
         alert("invaild input");
       }
@@ -184,6 +187,17 @@ export function renderOrderSummary(){
         //let pQuantity = document.querySelector('')
         console.log(productId);
         htmlStyleChange(productId, 'none', 'initial');
+        const updatedQuantity = Number(document.querySelector(`.js-input-update-${productId}`).value);
+        document.querySelector(`.js-input-update-${productId}`).value = "";
+        //console.log(updateNumber);
+        if(updatedQuantity > 0){
+          updateProductQuantity(productId, updatedQuantity);
+          renderOrderSummary();
+          renderPaymentSummary();
+          renderCheckoutHeader();
+        }else{
+          alert("invaild input");
+        }
       }
     });
   });
