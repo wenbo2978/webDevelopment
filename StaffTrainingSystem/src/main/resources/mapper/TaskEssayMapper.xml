@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bysj.staff_training.dao.TaskEssayMapper">
+
+  <insert id="addTaskEssay" parameterType="com.bysj.staff_training.pojo.TaskEssay">
+    insert into taskessay(taskId,authorId,taskQ)
+    values
+    (#{taskId,jdbcType=INTEGER}, #{authorId,jdbcType=INTEGER}, #{taskQ,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateTaskEssay" parameterType="com.bysj.staff_training.pojo.TaskEssay">
+    update taskessay
+    <set>
+      <if test="taskQ != null">
+        taskQ = #{taskQ,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where taskEssayId = #{taskEssayId,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteTaskEssay" parameterType="java.lang.Integer">
+    delete from taskessay
+    where taskEssayId = #{taskEssayId,jdbcType=INTEGER}
+  </delete>
+
+  <select id="getAllEssayByTaskId_Trainer" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TaskEssay">
+    select * from taskessay
+    where
+    taskId = #{taskId, jdbcType=INTEGER} and (staffId = "" or staffId is NULL)
+  </select>
+
+  <delete id="deleteAllEssayByTaskId" parameterType="java.lang.Integer">
+    delete from taskessay
+    where
+    taskId = #{taskId, jdbcType=INTEGER} and (staffId = "" or staffId is NULL)
+  </delete>
+
+  <select id="getEssayById" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TaskEssay">
+    select * from taskessay
+    where
+    taskEssayId = #{taskEssayId, jdbcType=INTEGER}
+  </select>
+
+  <insert id="addPublishedTaskEssay" parameterType="com.bysj.staff_training.pojo.TaskEssay">
+    insert into taskessay(taskId,authorId,staffId,taskQ, isFinished, score)
+    values
+    (#{taskId,jdbcType=INTEGER}, #{authorId,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{taskQ,jdbcType=VARCHAR},
+    #{isFinished,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER})
+  </insert>
+
+  <select id="findAllEssayByTaskIdAndStaffId" parameterType="com.bysj.staff_training.pojo.TrainingRecord" resultType="com.bysj.staff_training.pojo.TaskEssay">
+    select * from taskessay
+    where
+    staffId = #{staffId, jdbcType=INTEGER} and taskId = #{taskId, jdbcType=INTEGER}
+  </select>
+
+  <update id="saveEssayAnswer" parameterType="com.bysj.staff_training.pojo.TaskEssay">
+    update taskessay
+    set answer = #{answer}, isFinished = 'Finished'
+    where
+    taskEssayId = #{taskEssayId, jdbcType=INTEGER}
+  </update>
+
+  <update id="finishEssayAnswer" parameterType="java.lang.Integer">
+    update taskessay set
+    isFinished = 'Finished'
+    where
+    taskEssayId = #{taskEssayId, jdbcType=INTEGER}
+  </update>
+
+  <update id="updateEssayScore" parameterType="com.bysj.staff_training.pojo.TaskEssay">
+    update taskessay set
+    score = #{score, jdbcType=INTEGER}
+    where
+    taskEssayId = #{taskEssayId, jdbcType=INTEGER}
+  </update>
+
+
+</mapper>

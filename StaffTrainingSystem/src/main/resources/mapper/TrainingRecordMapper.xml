@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bysj.staff_training.dao.TrainingRecordMapper">
+
+  <insert id="addTrainingRecord" parameterType="com.bysj.staff_training.pojo.TrainingRecord">
+    insert into trainingrecord(taskId,staffId,authorId,taskName,staffName, end_Time, lastOperation_Time,
+    process, isFinished, isEvaluated, feedBack)
+    values
+    (#{taskId,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{authorId,jdbcType=INTEGER}, #{taskName,jdbcType=VARCHAR},
+    #{staffName,jdbcType=VARCHAR}, #{end_Time,jdbcType=VARCHAR}, #{lastOperation_Time,jdbcType=VARCHAR},
+    #{process,jdbcType=DOUBLE}, #{isFinished,jdbcType=VARCHAR}, #{isEvaluated,jdbcType=VARCHAR}, #{feedBack,jdbcType=VARCHAR})
+  </insert>
+
+  <select id="findTrainingRecordByTaskId" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingRecord">
+    select * from trainingrecord
+    where
+    taskId = #{taskId, jdbcType=INTEGER}
+  </select>
+
+  <select id="findTrainingRecordById" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingRecord">
+    select * from trainingrecord
+    where
+    trainingRId = #{trainingRId, jdbcType=INTEGER}
+  </select>
+
+  <select id="findAllTrainingRecordByStaff" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingRecord">
+    select * from trainingrecord
+    where
+    staffId = #{staffId, jdbcType=INTEGER}
+  </select>
+
+  <update id="updateTrainingProcessing" parameterType="com.bysj.staff_training.pojo.TrainingRecord">
+    update trainingrecord set
+    process = #{process, jdbcType = DOUBLE}, lastOperation_Time = #{lastOperation_Time, jdbcType=VARCHAR}
+    where
+    trainingRId = #{trainingRId, jdbcType=INTEGER}
+  </update>
+
+  <update id="finishTrainingRecord" parameterType="java.lang.Integer">
+    update trainingrecord set
+    isFinished = 'Finished'
+    where trainingRId = #{trainingRId, jdbcType=INTEGER}
+  </update>
+
+  <update id="submitEvaluation" parameterType="com.bysj.staff_training.pojo.TrainingRecord">
+    update trainingrecord set feedBack = #{feedBack, jdbcType=VARCHAR},
+    isEvaluated = 'Evaluated' where
+    trainingRId = #{trainingRId, jdbcType=INTEGER}
+  </update>
+
+
+</mapper>

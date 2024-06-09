@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bysj.staff_training.dao.TrainingResultMapper">
+
+  <insert id="addTrainingResult" parameterType="com.bysj.staff_training.pojo.TrainingResult">
+    insert into trainingresult(taskId, taskName, choiceScore, essayScore, totalScore, authorId, staffId,
+    staffName, trainerFeedBack)
+    values
+    (#{taskId,jdbcType=INTEGER}, #{taskName,jdbcType=VARCHAR}, #{choiceScore,jdbcType=INTEGER}, #{essayScore,jdbcType=INTEGER},
+    #{totalScore,jdbcType=INTEGER},  #{authorId,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{staffName,jdbcType=VARCHAR}, #{trainerFeedBack,jdbcType=VARCHAR})
+  </insert>
+
+  <select id="findTrainingResultByDESC" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingResult">
+    select *
+    from trainingresult
+    where
+    taskId = #{taskId,jdbcType = INTEGER}
+    ORDER BY totalScore DESC
+  </select>
+
+  <select id="findTrainingResultByASC" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingResult">
+    select *
+    from trainingresult
+    where
+    taskId = #{taskId,jdbcType = INTEGER}
+    ORDER BY totalScore ASC
+  </select>
+
+  <select id="findTotalTrainingResultByDESC" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingResult">
+    select sum(choiceScore) as choiceScore, sum(essayScore) as essayScore, sum(totalScore) as totalScore, authorId, staffId, staffName
+    from trainingresult
+    where authorId = #{authorId, jdbcType=INTEGER}
+    group by staffId
+    ORDER BY totalScore DESC
+  </select>
+
+  <select id="findTotalTrainingResultByASC" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingResult">
+    select sum(choiceScore) as choiceScore, sum(essayScore) as essayScore, sum(totalScore) as totalScore, authorId, staffId, staffName
+    from trainingresult
+    where authorId = #{authorId, jdbcType=INTEGER}
+    group by staffId
+    ORDER BY totalScore ASC
+  </select>
+
+  <select id="findAllTrainingResultByStaffId" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingResult">
+    select * from trainingresult
+    where
+    staffId = #{staffId, jdbcType=INTEGER}
+  </select>
+
+  <select id="findTrainingResultById" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingResult">
+    select * from trainingresult
+    where
+    trainingResId = #{trainingResId, jdbcType=INTEGER}
+  </select>
+
+  <update id="submitFeedBack" parameterType="com.bysj.staff_training.pojo.TrainingResult">
+    update trainingresult set
+    staffAdvice = #{staffAdvice,jdbcType=VARCHAR}, staffFeedBack = #{staffFeedBack,jdbcType=VARCHAR}
+    where
+    trainingResId = #{trainingResId, jdbcType=INTEGER}
+  </update>
+
+  <!--<select id="findTrainingRecordByTaskId" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingRecord">
+    select * from trainingrecord
+    where
+    taskId = #{taskId, jdbcType=INTEGER}
+  </select>
+
+  <select id="findTrainingRecordById" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingRecord">
+    select * from trainingrecord
+    where
+    trainingRId = #{trainingRId, jdbcType=INTEGER}
+  </select>
+
+  <select id="findAllTrainingRecordByStaff" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TrainingRecord">
+    select * from trainingrecord
+    where
+    staffId = #{staffId, jdbcType=INTEGER}
+  </select>
+
+  <update id="updateTrainingProcessing" parameterType="com.bysj.staff_training.pojo.TrainingRecord">
+    update trainingrecord set
+    process = #{process, jdbcType = DOUBLE}, lastOperation_Time = #{lastOperation_Time, jdbcType=VARCHAR}
+    where
+    trainingRId = #{trainingRId, jdbcType=INTEGER}
+  </update>
+
+  <update id="finishTrainingRecord" parameterType="java.lang.Integer">
+    update trainingrecord set
+    isFinished = 'Finished'
+    where trainingRId = #{trainingRId, jdbcType=INTEGER}
+  </update>
+
+  <update id="submitEvaluation" parameterType="com.bysj.staff_training.pojo.TrainingRecord">
+    update trainingrecord set feedBack = #{feedBack, jdbcType=VARCHAR},
+    isEvaluated = 'Evaluated' where
+    trainingRId = = #{trainingRId, jdbcType=INTEGER}
+  </update>-->
+
+
+</mapper>

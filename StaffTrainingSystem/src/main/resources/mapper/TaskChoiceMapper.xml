@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bysj.staff_training.dao.TaskChoiceMapper">
+
+  <insert id="addTaskChoice" parameterType="com.bysj.staff_training.pojo.TaskChoice">
+    insert into taskchoice(taskId,authorId,taskQ,taskChoiceA, taskChoiceB, taskChoiceC, taskChoiceD,
+    correctAnswer)
+    values
+    (#{taskId,jdbcType=INTEGER}, #{authorId,jdbcType=INTEGER}, #{taskQ,jdbcType=VARCHAR},
+    #{taskChoiceA,jdbcType=VARCHAR}, #{taskChoiceB,jdbcType=VARCHAR}, #{taskChoiceC,jdbcType=VARCHAR},
+    #{taskChoiceD,jdbcType=VARCHAR}, #{correctAnswer,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateTaskChoice" parameterType="com.bysj.staff_training.pojo.TaskChoice">
+    update taskchoice
+    <set>
+      <if test="taskQ != null">
+        taskQ = #{taskQ,jdbcType=VARCHAR},
+      </if>
+      <if test="taskChoiceA != null">
+        taskChoiceA = #{taskChoiceA,jdbcType=VARCHAR},
+      </if>
+      <if test="taskChoiceB != null">
+        taskChoiceB = #{taskChoiceB,jdbcType=VARCHAR},
+      </if>
+      <if test="taskChoiceC != null">
+        taskChoiceC = #{taskChoiceC,jdbcType=VARCHAR},
+      </if>
+      <if test="taskChoiceD != null">
+        taskChoiceD = #{taskChoiceD,jdbcType=VARCHAR},
+      </if>
+      <if test="correctAnswer != null">
+        correctAnswer = #{correctAnswer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where taskChoiceId = #{taskChoiceId,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteTaskChoice" parameterType="java.lang.Integer">
+    delete from taskchoice
+    where taskChoiceId = #{taskChoiceId,jdbcType=INTEGER}
+  </delete>
+
+  <select id="getAllChoiceByTaskId_Trainer" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TaskChoice">
+    select * from taskchoice
+    where
+    taskId = #{taskId, jdbcType=INTEGER} and (staffId = "" or staffId is NULL)
+  </select>
+
+  <delete id="deleteAllChoiceByTaskId" parameterType="java.lang.Integer">
+    delete from taskchoice
+    where
+    taskId = #{taskId, jdbcType=INTEGER} and (staffId = "" or staffId is NULL)
+  </delete>
+
+  <select id="getChoiceById" parameterType="java.lang.Integer" resultType="com.bysj.staff_training.pojo.TaskChoice">
+    select * from taskchoice
+    where
+    taskChoiceId = #{taskChoiceId, jdbcType=INTEGER}
+  </select>
+
+  <insert id="addPublishedTaskChoice" parameterType="com.bysj.staff_training.pojo.TaskChoice">
+    insert into taskchoice(taskId,authorId,staffId,taskQ,taskChoiceA, taskChoiceB, taskChoiceC, taskChoiceD,
+    correctAnswer, isFinished)
+    values
+    (#{taskId,jdbcType=INTEGER}, #{authorId,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER},
+    #{taskQ,jdbcType=VARCHAR},
+    #{taskChoiceA,jdbcType=VARCHAR}, #{taskChoiceB,jdbcType=VARCHAR}, #{taskChoiceC,jdbcType=VARCHAR},
+    #{taskChoiceD,jdbcType=VARCHAR}, #{correctAnswer,jdbcType=VARCHAR}, #{isFinished,jdbcType=VARCHAR})
+  </insert>
+
+  <select id="findAllChoiceByTaskIdAndStaffId" parameterType="com.bysj.staff_training.pojo.TrainingRecord" resultType="com.bysj.staff_training.pojo.TaskChoice">
+    select * from taskchoice
+    where
+    staffId = #{staffId, jdbcType=INTEGER} and taskId = #{taskId, jdbcType=INTEGER}
+  </select>
+
+  <update id="saveChoiceAnswer" parameterType="com.bysj.staff_training.pojo.TaskChoice">
+    update taskchoice
+    set answer = #{answer}, isFinished = 'Finished'
+    where
+    taskChoiceId = #{taskChoiceId, jdbcType=INTEGER}
+  </update>
+
+  <update id="finishChoiceAnswer" parameterType="java.lang.Integer">
+    update taskchoice
+    set isCorrect = case
+                        when answer = correctAnswer then 'correct'
+                        else 'unCorrect'
+                    end
+    where taskChoiceId = #{taskChoiceId, jdbcType=INTEGER}
+  </update>
+
+
+</mapper>
