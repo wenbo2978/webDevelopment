@@ -1,2 +1,2 @@
 front-end: javascript
-back-end: springboot + mybatics
+back-end: springboot + mybatis + MySQL database
