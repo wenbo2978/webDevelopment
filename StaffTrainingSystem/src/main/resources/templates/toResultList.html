@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Result</title><meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/index/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+    <!-- orion icons-->
+    <link rel="stylesheet" href="/index/css/orionicons.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/index/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/index/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/index/img/favicon.png?3">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <!-- JavaScript files-->
+    <script src="/index/vendor/jquery/jquery.min.js"></script>
+    <script src="/index/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="/index/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/index/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/index/vendor/chart.js/Chart.min.js"></script>
+    <script src="/index/js/js.cookie.min.js"></script>
+    <script src="/index/js/charts-home.js"></script>
+    <script src="/index/js/front.js"></script>
+    <script src="/js/toResultList.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div th:replace="commons/trainer_side_bar::topbar"></div>
+</header>
+<div class="d-flex align-items-stretch">
+    <div th:replace="commons/trainer_side_bar::sidebar"></div>
+    <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <ul class="breadcrumb">
+                        <li>
+                            TrainingResult
+                        </li>&nbsp;
+
+
+                    </ul>
+                    <div class="form-group">
+                        <select name="taskId" class="" id="selectTaskId">
+
+                        </select>
+                        <select name="taskOrder" class="" id="selectOrder">
+<!--                            <option value="0">&#45;&#45;请选择&#45;&#45;</option>-->
+                            <option value="Ascending">Ascending</option>
+                            <option value="Descending" selected>Descending</option>
+                        </select>
+                    </div>
+                    <div>
+                        <table class="table table-hover" id="result_table">
+                            <thead>
+                            <tr>
+<!--                                <th>-->
+<!--                                    <input type="checkbox" id="check_all"/>-->
+<!--                                </th>-->
+                                <th>Id</th>
+                                <th>StaffName</th>
+                                <th>TaskName</th>
+                                <th>ChoiceScore</th>
+                                <th>EssayScore</th>
+                                <th>TotalScore</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

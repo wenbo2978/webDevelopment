@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>StaffTaskDetail</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/index/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+    <!-- orion icons-->
+    <link rel="stylesheet" href="/index/css/orionicons.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/index/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/index/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/index/img/favicon.png?3">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <!-- JavaScript files-->
+    <script src="/index/vendor/jquery/jquery.min.js"></script>
+    <script src="/index/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="/index/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/index/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/index/vendor/chart.js/Chart.min.js"></script>
+    <script src="/index/js/js.cookie.min.js"></script>
+    <script src="/index/js/charts-home.js"></script>
+    <script src="/index/js/front.js"></script>
+    <script src="/index/js/echarts.js"></script>
+    <script src="/js/recordStaffDetail.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $(function(){
+        $('.c_div').mouseover(function(){
+<!--            $(this).css("border-bottom","2px gray solid");-->
+<!--            $(this).css("background", "white");-->
+        }).mouseout(function (){
+<!--            $(this).css("border-bottom","1px gray solid");-->
+<!--            $(this).css("background", "none");-->
+        });
+
+
+
+</script>
+<header class="header">
+    <div th:replace="commons/trainer_side_bar::topbar"></div>
+</header>
+<div class="d-flex align-items-stretch">
+    <div th:replace="commons/trainer_side_bar::sidebar"></div>
+    <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <ul class="breadcrumb">
+                        <li class="active">
+                            <a href="/rsb/Record">培训记录</a>
+                        </li>
+                        <em>|</em>
+                        <li class="active">
+                            <a href="/recordDetail.html">培训详情</a>
+                        </li>
+                        <em>|</em>
+                        <li class="active">
+                            培训详情查看
+                        </li>
+                    </ul>
+                    <div class="form-group" th:if="${session.due}  eq 'unDue'">
+                        <div class="form-group" th:if="${session.trainingRecord.getIsFinished()}  eq 'unFinished'">
+                            <h1>Not Submitted Yet, No Operation Available</h1>
+                        </div>
+                    </div>
+                    <div class="form-group" th:if="${session.due}  eq 'overDue'">
+                        <h1>This is task is overDue</h1>
+                    </div>
+
+                    <div class="col-md-12 column">
+                        <ul class="breadcrumb">
+                            <li class="active">
+                                Single-Choice
+                            </li>
+                        </ul>
+                        <div class="form-group" th:each="staffChoice:${session.staffChoiceList}">
+                            <div class="c_div" style="border-bottom:1px solid gray;">
+                                <div class="form-group">
+                                    <label>Q:</label><span th:text="${staffChoice.getTaskQ()}"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>A:</label><span th:text="${staffChoice.getTaskChoiceA()}"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>B:</label><span th:text="${staffChoice.getTaskChoiceB()}"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>C:</label><span th:text="${staffChoice.getTaskChoiceC()}"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>D:</label><span th:text="${staffChoice.getTaskChoiceD()}"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Answer:</label><span th:text="${staffChoice.getAnswer()}"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>CorrectAnswer:</label><span th:text="${staffChoice.getCorrectAnswer()}"></span>
+                                </div>
+                                <div class="form-group" th:if="${staffChoice.getIsFinished()}  eq 'Finished'">
+                                    <label>Result:</label><span th:text="${staffChoice.getIsCorrect()}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 column">
+                        <ul class="breadcrumb">
+                            <li class="active">
+                                Essay
+                            </li>
+                        </ul>
+                        <div class="form-group" th:each="staffEssay:${session.staffEssayList}">
+                            <div class="c_div" style="border-bottom:1px solid gray;">
+                                <div class="form-group">
+                                    <label>Q:</label><span th:text="${staffEssay.getTaskQ()}"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Answer:</label><span th:text="${staffEssay.getAnswer()}"></span>
+                                </div>
+
+                                <div class="form-group" th:if="${session.trainingRecord.getIsFinished()}  eq 'Finished'">
+                                    <div class="form-group" th:if="${session.trainingRecord.getIsEvaluated()}  eq 'unEvaluated'">
+                                        <form th:id="'essayScoreSave_form' + ${staffEssay.getTaskEssayId()}">
+                                            <div class="form-group" style="display:none">
+                                                <label>Id:</label><input type="" th:value="${staffEssay.getTaskEssayId()}" name="taskEssayId" class="form-control" th:id="${staffEssay.getTaskEssayId()}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label><span>Score:</span></label>
+                                                <input th:value="${staffEssay.getScore()}" type="" name="score" class="form-control" th:id="'essayScore' + ${staffEssay.getTaskEssayId()}"/>
+                                            </div>
+                                            <button type="button" class="btn btn-default" th:id="'essayScoreSave_' + ${staffEssay.getTaskEssayId()}" th:onclick="'essayScoreSave(' + ${staffEssay.getTaskEssayId()} + ');'">Save</button>
+                                        </form>
+                                    </div>
+                                    <div class="form-group" th:if="${session.trainingRecord.getIsEvaluated()}  eq 'Evaluated'">
+                                        <div class="form-group">
+                                            <label><span>Score:</span></label><span th:text="${staffEssay.getScore()}"  name="score" ></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 column">
+                        <ul class="breadcrumb">
+                            <li class="active">
+                                MyOperation
+                            </li>
+                        </ul>
+
+                            <div class="form-group" th:if="${session.trainingRecord.getIsEvaluated()}  eq 'Evaluated'">
+                                <h2>Submitted</h2>
+                            </div>
+
+                            <div class="form-group" th:if="${session.trainingRecord.getIsEvaluated()}  eq 'unEvaluated'">
+                                <div class="form-group" th:if="${session.due}  eq 'unDue'">
+                                    <div class="form-group" th:if="${session.ifCanMakeEvaluate}  eq 'cannot submit'">
+                                        <h2>Can't Submit</h2>
+                                    </div>
+                                    <div class="form-group" th:if="${session.ifCanMakeEvaluate}  eq 'can submit'">
+                                        <form action="/trainer/submitEvaluation" id="submitEvaluation_Form" method="post" enctype="multipart/form-data">
+                                            <div class="form-group" style="display:none">
+                                                <label>TaskId:</label><input type="" th:value="${session.trainingRecord.getTrainingRId()}" name="trainingRId" class="form-control" th:id="${session.trainingRecord.getTrainingRId()}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>FeedBack:</label><input type="" name="feedBack" class="form-control" id="feedBack"/>
+                                            </div>
+                                            <button type="submit" class="form-control" id="taskEvaluationSubmit">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="form-group" th:if="${session.due}  eq 'overDue'">
+                                    <form action="/trainer/submitDue" id="submitDue_Form" method="post" enctype="multipart/form-data">
+                                        <div class="form-group" style="display:none">
+                                            <label>TaskId:</label><input type="" th:value="${session.trainingRecord.getTrainingRId()}" name="trainingRId" class="form-control" th:id="${session.trainingRecord.getTrainingRId()}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>FeedBack:</label><input type="" name="feedBack" class="form-control" id="feedBackOverDue"/>
+                                        </div>
+                                        <button type="submit" class="form-control" id="taskDueSubmit">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

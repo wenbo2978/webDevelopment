@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TaskContentEditPage</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/index/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+    <!-- orion icons-->
+    <link rel="stylesheet" href="/index/css/orionicons.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/index/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/index/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/index/img/favicon.png?3">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <!-- JavaScript files-->
+    <script src="/index/vendor/jquery/jquery.min.js"></script>
+    <script src="/index/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="/index/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/index/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/index/vendor/chart.js/Chart.min.js"></script>
+    <script src="/index/js/js.cookie.min.js"></script>
+    <script src="/index/js/charts-home.js"></script>
+    <script src="/index/js/front.js"></script>
+    <script src="/js/taskContent.js"></script>
+</head>
+<body>
+<header class="header">
+    <div th:replace="commons/trainer_side_bar::topbar"></div>
+</header>
+<div class="d-flex align-items-stretch">
+    <div th:replace="commons/trainer_side_bar::sidebar"></div>
+
+    <!-- taskChoice编辑的模态框 -->
+    <div class="modal fade" id="taskChoiceEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myChoiceEditModalLabel">Edit Choice</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                </div>
+
+                <div class="modal-body">
+                    <form class="form-horizontal" id="taskChoiceEdit_form" action="/trainer/taskChoiceSaveEdit" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="text" name="taskChoiceId" class="form-control" id="taskChoiceId_edit_input" style="display: none">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">TaskQ</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="taskQ" class="form-control" id="taskQ_edit_input" placeholder="taskQ">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">TaskChoiceA</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="taskChoiceA" class="form-control" id="taskChoiceA_edit_input" placeholder="taskChoiceA">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">TaskChoiceB</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="taskChoiceB" class="form-control" id="taskChoiceB_edit_input" placeholder="taskChoiceB">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">TaskChoiceC</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="taskChoiceC" class="form-control" id="taskChoiceC_edit_input" placeholder="taskChoiceC">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">TaskChoiceD</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="taskChoiceD" class="form-control" id="taskChoiceD_edit_input" placeholder="taskChoiceD">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">CorrectAnswer</label>
+                            <div class="col-sm-12">
+                                <select name="correctAnswer" class="form-control" id="correctAnswer_add_input" placeholder="correctAnswer">
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>C</option>
+                                    <option>D</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="taskChoice_save_edit_btn">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- taskEssay编辑的模态框 -->
+    <div class="modal fade" id="taskEssayEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myEssayEditModalLabel">Edit Essay</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                </div>
+
+                <div class="modal-body">
+                    <form class="form-horizontal" id="taskEssayEdit_form" action="/trainer/taskEssaySaveEdit" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="text" name="taskEssayId" class="form-control" id="taskEssayId_edit_input" style="display: none">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">TaskQ</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="taskQ" class="form-control" id="taskQ2_edit_input" placeholder="taskQ">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="taskEssay_save_edit_btn">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container">
+            <div class="row clearfix">
+
+                <div class="col-md-12 column">
+                    <ul class="breadcrumb">
+                        <li>
+                            个人操作
+                        </li>&nbsp;
+                        <em>/</em>
+                        <li>
+                            <a href="/trainningSet.html">培训设置</a>
+                        </li>&nbsp;
+                        <em>/</em>
+                        <li>
+                            <a href="/mkOperate.html">培训编辑</a>
+                        </li>&nbsp;
+                        <em>/</em>
+                        <li class="active">
+                            培训内容查看
+                        </li>
+                    </ul>
+                    <ul class="breadcrumb">
+                        <li class="active">
+                            Single-Choice
+                        </li>
+                    </ul>
+                    <div class="form-group" th:each="taskChoice:${session.taskChoiceList}">
+                        <div class="form-group">
+                            <label>Q:</label><span th:text="${taskChoice.getTaskQ()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>A.</label><span th:text="${taskChoice.getTaskChoiceA()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>B.</label><span th:text="${taskChoice.getTaskChoiceB()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>C.</label><span th:text="${taskChoice.getTaskChoiceC()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>D.</label><span th:text="${taskChoice.getTaskChoiceD()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>CorrectAnswer:</label><span th:text="${taskChoice.getCorrectAnswer()}"></span>
+                        </div>
+                        <div class="form-group" th:if="${session.task.getIsPublished() eq 'unPublished'}">
+                            <a th:href="${'/trainer/taskChoiceDel/' + taskChoice.getTaskChoiceId()}">Delete</a>&nbsp;&nbsp;<a href="javascript:void(0);" th:onclick="'taskChoiceEdit(' + ${taskChoice.getTaskChoiceId()} + ');'">Edit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 column">
+                    <ul class="breadcrumb">
+                        <li class="active">
+                            Essay
+                        </li>
+                    </ul>
+
+                    <div class="form-group" th:each="taskEssay:${session.taskEssayList}">
+                        <div class="form-group">
+                            <label>Q:</label><span th:text="${taskEssay.getTaskQ()}"></span>
+                        </div>
+                        <div class="form-group" th:if="${session.task.getIsPublished() eq 'unPublished'}">
+                            <a th:href="${'/trainer/taskEssayDel/' + taskEssay.getTaskEssayId()}">Delete</a>&nbsp;&nbsp;<a href="javascript:void(0);" th:onclick="'taskEssayEdit(' + ${taskEssay.getTaskEssayId()} +');'">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+</body>
+</html>

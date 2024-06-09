@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TrainingProcessing</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/index/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+    <!-- orion icons-->
+    <link rel="stylesheet" href="/index/css/orionicons.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/index/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/index/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/index/img/favicon.png?3">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <!-- JavaScript files-->
+    <script src="/index/vendor/jquery/jquery.min.js"></script>
+    <script src="/index/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="/index/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/index/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/index/vendor/chart.js/Chart.min.js"></script>
+    <script src="/index/js/js.cookie.min.js"></script>
+    <script src="/index/js/charts-home.js"></script>
+    <script src="/index/js/front.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $(function(){
+        $('.c_div').mouseover(function(){
+            $(this).css("box-shadow","0px 0px 0px rgba(0, 0, 0, 0)");
+            $(this).css("border","1px solid #000");
+        }).mouseout(function (){
+            $(this).css("box-shadow","7px 7p 5px rgba(0, 0, 0, 0.5)");
+            $(this).css("border","0px solid #000");
+        });
+
+
+    });
+</script>
+<header class="header">
+    <div th:replace="commons/trainer_side_bar::topbar"></div>
+</header>
+<div class="d-flex align-items-stretch">
+    <div th:replace="commons/trainer_side_bar::sidebar"></div>
+    <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <ul class="breadcrumb">
+                        <li class="active">
+                            培训记录
+                        </li>
+                    </ul>
+                    <div class="form-group" th:each="task_record:${session.totalRecord}">
+                        <div id="id_div" class="c_div"  style="border-top-left-radius:40px;background : white;
+                        border-top-right-radius:40px;border-bottom-right-radius:40px;border-bottom-left-radius:40px;box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.5);">
+                            <br>
+                            <div class="form-group">
+                                &nbsp;<label>TaskName:</label><a th:href="${'/trainer/recordDetail/' + task_record.getTaskId()}" th:text="${task_record.getTaskName()}"></a>
+                            </div>
+                            <div class="form-group">
+                                &nbsp;<label>Author:</label><span th:text="${session.user.getUsername()}"></span>&nbsp;
+                                <label>Deadline:</label><span th:text="${task_record.getEnd_Time()}"></span>
+                            </div>
+
+                            <div class="form-group">
+                                &nbsp;<label>Finished:</label><span th:text="${task_record.getFinishedAmount()}"></span>&nbsp;
+                                <em>/</em>&nbsp;<span th:text="${task_record.getAmount()}"></span>&nbsp;
+                                <label>Evaluated:</label><span th:text="${task_record.getEvaluatedAmount()}"></span>&nbsp;
+                                <em>/</em>&nbsp;<span th:text="${task_record.getAmount()}"></span>&nbsp;
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

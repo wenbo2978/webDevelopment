@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>人事部端</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/index/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+    <!-- orion icons-->
+    <link rel="stylesheet" href="/index/css/orionicons.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/index/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/index/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/index/img/favicon.png?3">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <!-- JavaScript files-->
+    <script src="/index/vendor/jquery/jquery.min.js"></script>
+    <script src="/index/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="/index/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/index/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/index/vendor/chart.js/Chart.min.js"></script>
+    <script src="/index/js/js.cookie.min.js"></script>
+    <script src="/index/js/charts-home.js"></script>
+    <script src="/index/js/front.js"></script>
+    <script src="/js/text.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $(function(){
+        $("#aaa").textScroll();//aaa为最外层div的Id  也可写Class  如：$(".aaa") 此处aaa为class名
+    });
+</script>
+<header class="header">
+    <div th:replace="commons/trainer_side_bar::topbar"></div>
+</header>
+<div class="d-flex align-items-stretch">
+    <div th:replace="commons/trainer_side_bar::sidebar"></div>
+    <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="col-md-12 column">
+
+
+            <p align="center" style="margin-top:50px;">人事部须知</p>
+            <p align="left" style="margin-left:200px;">
+                1、人事部需按时发布培训任务
+            </p>
+            <p align="left" style="margin-left:200px;">
+                2、人事部需按时评价员工培训，客观题每题5分，主观题每题10分
+            </p>
+            <p align="left" style="margin-left:200px;">
+                3、人事部需按时完成企业高层任务
+            </p>
+        </div>
+<!--        <div class="col-md-12 column" style="border-width:1px;border-style:solid;">-->
+<!--            <p>-->
+<!--                1.............-->
+<!--                2...........-->
+<!--            </p>-->
+<!--        </div>-->
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>培训任务修改/删除界面</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/index/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+    <!-- orion icons-->
+    <link rel="stylesheet" href="/index/css/orionicons.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/index/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/index/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/index/img/favicon.png?3">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <!-- JavaScript files-->
+    <script src="/index/vendor/jquery/jquery.min.js"></script>
+    <script src="/index/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="/index/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/index/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/index/vendor/chart.js/Chart.min.js"></script>
+    <script src="/index/js/js.cookie.min.js"></script>
+    <script src="/index/js/charts-home.js"></script>
+    <script src="/index/js/front.js"></script>
+</head>
+<body>
+<header class="header">
+    <div th:replace="commons/rsb_side_bar::topbar"></div>
+</header>
+<div class="d-flex align-items-stretch">
+    <div th:replace="commons/rsb_side_bar::sidebar"></div>
+    <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container">
+            <div class="row clearfix">
+
+                <div class="col-md-12 column">
+                    <ul class="breadcrumb">
+                        <li>
+                            个人操作
+                        </li>&nbsp;
+                        <em>/</em>
+                        <li>
+                            <a href="/trainningSet.html">培训设置</a>
+                        </li>&nbsp;
+                        <em>/</em>
+                        <li>
+                            <a href="/mkOperate.html">培训编辑</a>
+                        </li>&nbsp;
+                        <em>/</em>
+                        <li class="active">
+                            培训内容查看
+                        </li>
+                    </ul>
+                    <ul class="breadcrumb">
+                        <li class="active">
+                            阅读材料
+                        </li>
+                    </ul>
+                    <div class="form-group" th:each="etask_r:${session.etask_rs}">
+                        <div class="form-group">
+                            <label>标题：</label><span th:text="${etask_r.getTaskName()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <p th:text="${etask_r.getTaskContent()}"></p>
+                        </div>
+                        <div class="form-group">
+                            <a th:href="${'/rsb/task_rOperate_Del/' + etask_r.getTaskName()}">删除</a>&nbsp;&nbsp;<a th:href="${'/rsb/task_rOperate_Edit/' + etask_r.getTaskName()}">编辑</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 column">
+                    <ul class="breadcrumb">
+                        <li class="active">
+                            选择题
+                        </li>
+                    </ul>
+                    <div class="form-group" th:each="etask_we:${session.etask_wes}">
+                        <div class="form-group">
+                            <label>题目：</label><span th:text="${etask_we.getTaskTitle()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>选项 A：</label><span th:text="${etask_we.getTask_A()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>选项 B：</label><span th:text="${etask_we.getTask_B()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>选项 C：</label><span th:text="${etask_we.getTask_C()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>选项 D：</label><span th:text="${etask_we.getTask_D()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>正确答案：</label><span th:text="${etask_we.getCorrect_Answer()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <a th:href="${'/rsb/task_weOperate_Del/' + etask_we.getTaskTitle()}">删除</a>&nbsp;&nbsp;<a th:href="${'/rsb/task_weOperate_Edit/' + etask_we.getTaskTitle()}">编辑</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 column">
+                    <ul class="breadcrumb">
+                        <li class="active">
+                            简答题
+                        </li>
+                    </ul>
+                    <div class="form-group" th:each="etask_wd:${session.etask_wds}">
+                        <div class="form-group">
+                            <label>题目：</label><span th:text="${etask_wd.getTaskTitle()}"></span>
+                        </div>
+                        <div class="form-group">
+                            <a th:href="${'/rsb/task_wdOperate_Del/' + etask_wd.getTaskTitle()}">删除</a>&nbsp;&nbsp;<a th:href="${'/rsb/task_wdOperate_Edit/' + etask_wd.getTaskTitle()}">编辑</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+</body>
+</html>

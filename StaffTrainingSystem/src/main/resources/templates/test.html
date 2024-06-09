@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/text.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+$(function(){
+    $("#aaa").textScroll();//aaa为最外层div的Id  也可写Class  如：$(".aaa") 此处aaa为class名
+});
+
+</script>
+<div id="aaa" style="width:100px; position:relative; white-space:nowrap; overflow:hidden; height:20px;">
+    <div id="noticeList" style="position:absolute; top:0; height:20px;">
+        <span>jQuery文字横向滚动</span>
+    </div>
+</div>
+</body>
+</html>

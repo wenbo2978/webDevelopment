@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+</head>
+<body>
+<!--topbar-->
+
+
+<nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow" th:fragment="topbar"><a href="#" class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"><i class="fas fa-align-left"></i></a>
+    <a href="admin_index.html" class="navbar-brand font-weight-bold text-uppercase text-base">Staff Training System</a>
+    <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
+        <li class="nav-item">
+            <form id="searchForm" class="ml-auto d-none d-lg-block">
+                <div class="form-group position-relative mb-0">
+                    <button type="submit" style="top: -3px; left: 0;" class="position-absolute bg-white border-0 p-0"><i class="o-search-magnify-1 text-gray text-lg"></i></button>
+                    <input type="search" placeholder="Search ..." class="form-control form-control-sm border-0 no-shadow pl-4">
+                </div>
+            </form>
+        </li>
+
+        <li class="nav-item dropdown ml-auto">
+            <a id="userInfo" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
+                <span><h6>Welcome! Administrator</h6></span></a>
+        </li>
+    </ul>
+</nav>
+
+
+<!--sidebar-->
+
+<nav id="sidebar" class="sidebar py-3" th:fragment="sidebar">
+    <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
+    <ul class="sidebar-menu list-unstyled">
+        <li class="sidebar-list-item"><a href="admin_index.html" class="sidebar-link text-muted"><i class="o-network-1 mr-3 text-gray"></i><span>Main</span></a></li>
+
+        <li class="sidebar-list-item"><a href="userList.html" class="sidebar-link text-muted"><i class="o-id-card-1 mr-3 text-gray"></i><span>User</span></a></li>
+        <!--<li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-settings-window-1 mr-3 text-gray"></i><span>Record(deleted)</span></a></li>
+        <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-clock-1 mr-3 text-gray"></i><span>Process(deleted)</span></a></li>-->
+        <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>Logout</span></a></li>
+    </ul>
+
+</nav>
+
+
+</body>
+</html>

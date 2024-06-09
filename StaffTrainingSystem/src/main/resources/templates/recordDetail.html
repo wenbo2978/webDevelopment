@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TrainingDetail</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/index/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+    <!-- orion icons-->
+    <link rel="stylesheet" href="/index/css/orionicons.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/index/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/index/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/index/img/favicon.png?3">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <!-- JavaScript files-->
+    <script src="/index/vendor/jquery/jquery.min.js"></script>
+    <script src="/index/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="/index/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/index/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/index/vendor/chart.js/Chart.min.js"></script>
+    <script src="/index/js/js.cookie.min.js"></script>
+    <script src="/index/js/charts-home.js"></script>
+    <script src="/index/js/front.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $(function(){
+        $('.c_div').mouseover(function(){
+            $(this).css("border-bottom","2px gray solid");
+            $(this).css("font-weight", "bold");
+        }).mouseout(function (){
+            $(this).css("border-bottom","1px gray solid");
+            $(this).css("font-weight", "normal");
+        });
+
+        $('.selectRecordId').change(function(){
+            var mk_RecordId = $(this).val();
+            if(mk_RecordId !=0){
+                //alert(mk_RecordId);
+                $.ajax({
+                    url:"/rsb/recordStaffDetail2",
+                    data:"mk_RecordId="+mk_RecordId,
+                    type:"GET",
+                    success:function(result){
+                        //alert("1111");
+                        location.href = "/recordStaffDetail.html";
+                    }
+                });
+            }else{
+                alert("请选择");
+            }
+        });
+
+<!--        $('.selectRecordId').change(function(){-->
+<!--            alert("1");-->
+<!--            var mk_RecordId = $(this).val();-->
+<!--            if(mk_RecordId !=0){-->
+<!--                alert(mk_RecordId);-->
+<!--                $.ajax({-->
+<!--                url:"/rsb/recordStaffDetail2",-->
+<!--                data:"mk_RecordId="+mk_RecordId,-->
+<!--                type:"GET",-->
+<!--                success:function(result){-->
+<!--                    alert("1111");-->
+<!--                    location.href = "/recordStaffDetail.html";-->
+
+<!--                });-->
+<!--            }else{-->
+<!--                alert("请选择");-->
+<!--            }-->
+
+<!--        });-->
+
+
+    });
+</script>
+<header class="header">
+    <div th:replace="commons/trainer_side_bar::topbar"></div>
+</header>
+<div class="d-flex align-items-stretch">
+    <div th:replace="commons/trainer_side_bar::sidebar"></div>
+    <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <ul class="breadcrumb">
+                        <li class="active">
+                            <a href="/rsb/Record">TrainingRecord</a>
+                        </li>
+                        <em>/</em>
+                        <li class="active">
+                            TrainingDetail
+                        </li>
+                    </ul>
+                    <div class="form-group">
+                        <select name="recordId" class="selectRecordId" id="selectRecordId" >
+                            <option value="0">--Select--</option>
+                            <option th:each="record:${session.recordList}" th:text="${record.getStaffName()}" th:value="${record.getTrainingRId()}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group" th:each="record:${session.recordList}">
+                        <div class="c_div" style="border-bottom:1px solid gray;">
+                            <div class="form-group">
+                                &nbsp;<label>StaffName:</label><a th:href="${'/trainer/recordStaffDetail/' + record.getTrainingRId()}" th:text="${record.getStaffName()}"></a>
+                            </div>
+                            <div class="form-group">
+                                &nbsp;<label>Processing:</label><progress style="width: 800px;" th:value="${record.getProcess()}" max="100"></progress><span th:text="${record.getProcess()}"></span><span>%</span>
+                            </div>
+                            <div class="form-group">
+                                &nbsp;<label>LastOperationTime:</label><span th:text="${record.getLastOperation_Time()}"></span>&nbsp;
+                                <label>Deadline:</label><span th:text="${record.getEnd_Time()}"></span>
+                                <label>IsEvaluated:</label><span th:text="${record.getIsEvaluated()}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
