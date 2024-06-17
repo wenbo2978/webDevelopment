@@ -1,0 +1,19 @@
+.tree-view-container {
+  min-height: 100vh;
+  width: 250px;
+  background: blueviolet;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.menu-list-container {
+  list-style: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}

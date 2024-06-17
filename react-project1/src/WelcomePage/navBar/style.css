@@ -1,0 +1,56 @@
+.mainPageBar-container-show{
+  position: sticky;
+  top: 0;
+
+  height: 100vh;
+  width: 15vw;
+  min-Width: 120px;
+  background-color: rgb(254, 240, 240);
+  padding: 10px 10px 10px 10px;
+  overflow-y: scroll;
+  
+}
+
+.mainPageBar-container-hidden{
+  position: sticky;
+  top: 0;
+
+  height: 100vh;
+  width: 5vw;
+  min-Width: 30px;
+  
+}
+
+.mianPageBar-show-hidden-image{
+  border: none;
+  height: 35px;
+  width: 35px;
+  background-image: url('../../assets/image/fold_logo.png');
+  background-size: cover;
+  background-position: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  
+  cursor: pointer;
+}
+
+.mianPageBar-show-hidden-image:hover{
+  background-color: rgb(230, 216, 216);
+}
+
+.mainPageBar-label{
+  overflow: hidden;
+  padding: 5px 5px 5px 5px;
+  font-size: medium;
+  height: 30px;
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+.mainPageBar-label:hover{
+  background-color: rgb(230, 216, 216);
+}
+
