@@ -4,6 +4,8 @@ back-end: springboot + mybatis + MySQL database
 
 database: see database.txt
 
+===========================================================================================================================================
+
 File Structure
 
 ![image](https://github.com/wenbo2978/webDevelopment/assets/161510538/3e54b5c8-e519-456f-8248-de436ab28450)
@@ -31,3 +33,5 @@ Folder main includes Back-End and Front-End.
 8. templates: html files;
    
 Folder test includes test files, makes unit test in there.
+
+========================================================================================================================
