@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Position Practice</title>
+  </head>
+  <body style="
+      height: 3000px;
+      padding-top: 55px;
+    ">
+    <div style="
+        background-color: black;
+        color: white;
+        position: fixed;
+        top: 0px;
+        left: 0;
+        right: 0;
+        height: 50px;
+        width: 100%;
+      ">
+      header
+    </div>
+    <div style="
+      background-color: lightblue;
+      height: 200px;
+      width: 200px;
+      position: relative;
+      top: 55px;
+      ">div1
+      <div style="
+          position: absolute;
+          right: 0;
+          top: 0;
+        ">
+        div1-1
+      </div>  
+    </div>
+    <div style="
+      background-color: lightcyan;
+      height: 200px;
+      width: 200px;
+      position: absolute;
+      top: 255px;
+    ">div2
+    <div style="
+      position: absolute;
+      top: 0;
+      right: 0;
+    ">
+      div2-1
+    </div>  
+  </div>
+  </body>
+</html>

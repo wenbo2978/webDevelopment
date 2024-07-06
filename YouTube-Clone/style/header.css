@@ -1,0 +1,286 @@
+
+
+.header{
+  height: 55px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-bottom: 1px solid rgb(239, 237, 237);
+  z-index: 100;
+}     
+
+/*
+Key Differences:
+Usage Context: align-items is for flex containers, while vertical-align is for inline and table-cell elements.
+Axis of Alignment: align-items aligns items along the cross axis in a flex container, whereas vertical-align aligns inline or table-cell elements vertically relative to their container.
+*/
+
+
+
+.hamburger-menu{
+  height: 24px;
+  margin-left: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 8px;
+}
+
+.hamburger-menu:hover{
+  background-color: rgb(211, 209, 209);
+}
+
+.youtube-logo{
+  height: 20px;
+  cursor: pointer;
+}
+
+.left-section{
+  display: flex;
+  align-items: center;
+}
+
+.search-bar{
+  flex: 1;
+  height: 34px;
+  padding-left: 10px;
+  font-size: 16px;
+  border: 1px rgb(192,192,192) solid;
+  border-radius: 2px;
+  box-shadow: inset 1px 2px 2px rgba(0, 0, 0, 0.05);
+  width: 0;
+}
+
+.search-bar::placeholder{
+  font-family: Roboto, Arial;
+  font-size: 16px;
+}
+
+.search-button{
+  height: 38px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(240, 240, 240);
+  border: 1px rgb(192,192,192) solid;
+  margin-left: -1px;
+  margin-right: 10px;
+  cursor: pointer;
+
+  position: relative;
+}
+
+.search-button div{
+  position: absolute;
+  bottom: -30px;
+  right: 0;
+  background-color: rgb(174, 158, 158);
+  color: white;
+  padding-top: 4px;
+  padding-left: 8px;
+  padding-bottom: 4px;
+  padding-right: 8px;
+  border-radius: 2px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+.search-button:hover div{
+  opacity: 1;
+}
+
+.search-icon{
+  height: 25px;
+}
+.voice-search-button{
+  height: 38px;
+  width: 40px;
+  border-radius: 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgb(245, 245, 245);
+  position: relative;
+}
+
+.voice-search-button div{
+  width: 160px;
+  position: absolute;
+  bottom: -30px;
+  right: -80px;
+  background-color: rgb(174, 158, 158);
+  color: white;
+  padding-top: 4px;
+  padding-left: 8px;
+  padding-bottom: 4px;
+  padding-right: 8px;
+  border-radius: 2px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+.voice-search-button:hover div{
+  opacity: 1;
+}
+
+.voice-search-icon{
+  height: 24px;
+}
+
+.middle-section{
+  flex: 1;
+  margin-left: 70px;
+  margin-right: 35px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.upload-icon-div{
+  position: relative;
+}
+
+.upload-icon-div div{
+  position: absolute;
+  bottom: -38px;
+  right: -15px;
+  background-color: rgb(174, 158, 158);
+  color: white;
+  padding-top: 4px;
+  padding-left: 8px;
+  padding-bottom: 4px;
+  padding-right: 8px;
+  border-radius: 2px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+.upload-icon-div:hover div{
+  opacity: 1;
+}
+
+.upload-icon{
+  height: 24px;
+  cursor: pointer;
+}
+
+.youtube-apps-icon-div{
+  position: relative;
+}
+
+.youtube-apps-icon-div div{
+  width: 80px;
+  position: absolute;
+  bottom: -38px;
+  right: -40px;
+  background-color: rgb(174, 158, 158);
+  color: white;
+  padding-top: 4px;
+  padding-left: 8px;
+  padding-bottom: 4px;
+  padding-right: 8px;
+  border-radius: 2px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+.youtube-apps-icon-div:hover div{
+  
+  opacity: 1;
+
+}
+
+.youtube-apps-icon{
+  height: 24px;
+  cursor: pointer;
+}
+
+.notifications-icon-div{
+  position: relative;
+}
+
+.notifications-icon-div .notifications-tooltips{
+  position: absolute;
+  bottom: -38px;
+  right: -40px;
+  background-color: rgb(174, 158, 158);
+  color: white;
+  padding-top: 4px;
+  padding-left: 8px;
+  padding-bottom: 4px;
+  padding-right: 8px;
+  border-radius: 2px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+.notifications-icon-div:hover .notifications-tooltips{
+  opacity: 1;
+}
+
+.notifications-icon{
+  height: 24px;
+  cursor: pointer;
+}
+
+.notifications-icon-container{
+  position: relative;
+}
+
+.notifications-count{
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: rgb(208, 0, 0);
+  color: white;
+  font-family: Roboto, Arial;
+  font-size: 11px;
+  border-radius: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.current-user-pic{
+  height: 32px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+
+/*
+flex-shrink: 0; no shinking when space is reducing
+*/
+
+.right-section{
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+
+
